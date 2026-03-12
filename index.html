@@ -485,7 +485,7 @@ canvas{position:absolute;top:0;left:0;width:100%;height:100%}
     <div id="browse-about-section" style="margin-top:80px;display:flex;gap:80px;align-items:center">
       <div style="flex:1">
         <h2 style="font-size:32px;font-weight:bold;color:#020406;margin-bottom:16px">Hi, my name is Ásbjörn!</h2>
-        <p style="font-size:24px;color:#020406;line-height:1.6;margin-bottom:24px">I'm a digital product designer at the Municipality of Reykjavík. I dabble in illustration, animation and anything digital. I love a challenge; get me a cup of coffee, some new software, and I'll deliver!</p>
+        <p style="font-size:24px;color:#020406;line-height:1.6;margin-bottom:24px">I'm a digital product designer at the Municipality of Reykjavík. I'm also an illustrator, animator and a dabbler in all things digital. I love a challenge; get me a cup of coffee, some new software, and I'll deliver!</p>
         <p style="font-size:16px;color:#7f7f7f">✉ asbjornerlingsson@gmail.com</p>
         <p style="font-size:16px;color:#7f7f7f">☎ 6616443</p>
       </div>
@@ -535,7 +535,7 @@ const P_FRAME_W=504,P_FRAME_H=720,P_FRAMES=4;
 
 // Couch image
 const couchImg=new Image();
-const COUCH_X=5500; // position after last sign (CONTACT at 7700)
+const COUCH_X=6500; // position after last sign (CONTACT at 7700)
 const sittingImg=new Image();
 sittingImg.src='data:image/png;base64,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';
 couchImg.src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAARwAAABsCAYAAAC4oQ2VAAADu0lEQVR4nO3dPXLUSBgGYHlrmSIiIoILcAAiDrIhIVeAjCKDKxAScg6KiAOQEUFEREQNgTcSy9oaWxqpv+6v9Typp+QWJd56+0fjYQAAAAAAAAAAANa6qD0A/u/OvbuXtcfAvv368bNYLvxV6sIAVwkcIMzftQfAaccHr2oPgZ04fHsZ8ns0HCCMwAHCmFKtZFeJ3mz9TP+566XhAGE0nKQ+Hb/WHgLJPD48rD0EgbOlNbtKUbsEMFeJ59mUCggjcIAwplQbm7O2UmIu3cL8fInx3ynLuLONdxjKrPOtfb41HCCMhlPIVMrbWaIX5z7fGg4QRuAAYQQOEEbgAGEEDhBG4ABhBA4QppvAuXz05sXlozcvao8DOK2bg38Xn5+/rj0G4GapGs5Ui9FsII9UDWeqxcxpNmMgRbYgrzHQs3Of7xSBMycwbvqM6Ra0IUXgzAmMqc/UaDaZvr4Allr7fKcInNFUgGg2kEeqwMm0hgNclyJwrOFAH1IETqY1HOC0FIEzWhogggbakipwzg2QPTSdrOd+so0723hbkypwztVz0EAmqV5tAHJrsuHcuXf3suT1f/34eVHy+sC0JgOH2znRTEZNB87H+882vd6T7283vR6wTNOBIyCgL00Hzt4dvr2sPQTYVJOBMy7qjovHxwevVl1v/I9rsRjqajJwSrlt90sgQVnO4QBhdtVwhmG6xZQ+97PU8Z93tYewyuH905M/y35vw9D3/d10b1vQcIAwu2s4lLd2kb91vd9fSRoORX06fu36Deve729rAgcIY0rVog9fao+gnJ7vbRj6v7+VNBwgzO4aTmtb4LAnGg4QZlcNx6sLUJeGA4QROEAYgQOESbGG44uooA8aDhCm6YZjVwn68jtwHIg7TfDBNkypgDDXplS+6+M/FqthWxoOEEbgAGGuTalMI4BSNBwgzO+Gc/WvXU65uj285LO1zB2jYwFQnoYDhDl50vjP7fHb1nWWfLaWuWPMcC+ZPD48rD2Eonq/v601/WrDXgk6emVKBYTRcDakmdCTEs+zhgOEEThAGFOqlW47bzSe7/l4/1nMgCDIk+9vh2FYduZOwwHCCBwgjMABwggcIIzAAcLYpQoyrujDnmk4QBgNp7BTZxTmfP9OK98pRP+inkcNBwij4VQ29Wd5vARKLaWfRw0HCCNwgDACBwhzcg1nybwtw5rD3DFmuBfISsMBwlxrOEv22jOcE5k7xgz3AtlpOEAYgQOEEThAGIEDhBE4QBg7M5V4W5yWeFscAOBc/wLfUjF7hs/wwQAAAABJRU5ErkJggg==';
@@ -639,81 +639,86 @@ function drawCharFrame(ctx,frame,px,py,scale,flip){
 const ZONES=[
   {x:1000,label:'ABOUT',type:'dialog',tab:'about',
     header:'ABOUT — Ásbjörn Erlingsson',
-    content:`I'm a digital product designer at the Municipality of Reykjavík. I dabble in illustration, animation and anything digital. I love a challenge; get me a cup of coffee, some new software, and I'll deliver!<br><br><span>✉ asbjornerlingsson@gmail.com</span><br><span>☎ 6616443</span>`,
+    content:`I'm a digital product designer at the Municipality of Reykjavík. I'm also an illustrator, animator and a dabbler in all things digital. I love a challenge; get me a cup of coffee, some new software, and I'll deliver!<br><br><span>✉ asbjornerlingsson@gmail.com</span><br><span>☎ 6616443</span>`,
     xp:50},
-  {x:1500,label:'VEITA',type:'project',tab:'work',
+  {x:1550,label:'VEITA',type:'project',tab:'work',
     title:'Veita',
     what:'The merging of financial aid application systems that Reykjavík and SÍS (Icelandic Association of Local Authorities) use.',
     how:'Through user research the current workflows of the separate financial aid systems was analysed. In order to create a usable and helpful product for both Reykjavík and SÍS, an immensely complicated workflow needed to be simplified and merged with one that was considerably simpler, but mainly suffered from some user interface troubles.',
     tags:['UX Research','UI Design','Figma','Workflows'],/* =====================================================
        IMAGE GALLERY FOR VEITA
-       Add your image URLs here. They will appear in the
-       expanded popup's gallery area with ◄ ► navigation.
-       Example: images:['img/veita-1.jpg', 'img/veita-2.jpg']
+       
+       HOW TO ADD IMAGES:
+       1. Host your images online (e.g. Imgur, Cloudinary, 
+          your own website, or GitHub Pages)
+       2. Paste the FULL URL for each image inside the 
+          brackets below, wrapped in quotes, separated 
+          by commas.
+       
+       EXAMPLE:
+       images:[
+         'https://example.com/images/veita-screenshot-1.png',
+         'https://example.com/images/veita-screenshot-2.png',
+         'https://example.com/images/veita-flow-diagram.jpg'
+       ],
+       
+       NOTE: Relative paths like 'img/photo.jpg' will NOT 
+       work unless this HTML file is hosted on a web server 
+       in the same folder as those images.
        ===================================================== */
-    images:["https://github.com/bubblingur/asbjorn.portfolio/blob/62bb7111623b1e0dec1d84966f42be46839bf122/img/meniga1.png, https://github.com/bubblingur/asbjorn.portfolio/blob/62bb7111623b1e0dec1d84966f42be46839bf122/img/meniga1.png"],
+    images:[],
     xp:100},
-  {x:2050,label:'MENIGA',type:'project',tab:'work',
+  {x:2100,label:'MENIGA',type:'project',tab:'work',
     title:'Meniga Brand Revamp',
     what:'Meniga, an Icelandic fintech company, needed to update their illustration library after a brand revitalization.',
     how:'These were the first illustrations using their new design system. A visual style needed to be developed that fit their design system language.',
-    tags:['Illustration','Branding','Figma','Design System'],/* =====================================================
-       IMAGE GALLERY FOR MENIGA
-       Add your image URLs here. They will appear in the
-       expanded popup's gallery area with ◄ ► navigation.
-       Example: images:['img/veita-1.jpg', 'img/veita-2.jpg']
-       ===================================================== */
-    images:["img/meniga1.png", "img/meniga2.png"],
+    tags:['Illustration','Branding','Figma','Design System'],/* IMAGE GALLERY FOR MENIGA — Add full image URLs here */
+    images:[
+      /* 'https://your-site.com/images/meniga-1.png', */
+      /* 'https://your-site.com/images/meniga-2.png'  */
+    ],
     xp:100},
-  {x:2600,label:'BILINGUALISM',type:'project',tab:'work',
+  {x:2650,label:'BILINGUALISM',type:'project',tab:'work',
     title:'Bilingualism',
     what:'A project focusing on how to give bilingual children in Reykjavík the support they need in order to prevent them from lagging behind their peers.',
     how:'Extensive analysis through interviews, workshops, and testing with experts, teachers, and parents of bilingual children. Results include the establishment of in-school youth mentoring programs and the design of informational websites containing helpful information for bilingual families.',
-    tags:['UX Research','Service Design','Workshops','Web Design'],/* =====================================================
-       IMAGE GALLERY FOR BILINGUALISM
-       Add your image URLs here. They will appear in the
-       expanded popup's gallery area with ◄ ► navigation.
-       Example: images:['img/veita-1.jpg', 'img/veita-2.jpg']
-       ===================================================== */
-    images:[],
+    tags:['UX Research','Service Design','Workshops','Web Design'],/* IMAGE GALLERY FOR BILINGUALISM — Add full image URLs here */
+    images:[
+      /* 'https://your-site.com/images/bilingualism-1.png', */
+      /* 'https://your-site.com/images/bilingualism-2.png'  */
+    ],
     xp:100},
-  {x:3150,label:'DIGITAL PRODUCTS',type:'project',tab:'work',
+  {x:3200,label:'DIGITAL PRODUCTS',type:'project',tab:'work',
     title:'Digital Products',
     what:"Be it building permit information solutions or in-house asset management systems, there's a broad range of digital products you get to work on for the Municipality of Reykjavík.",
     how:'POC prototypes, cross-disciplinary teamwork, an infinite amount of back-and-forth with stakeholders and an obscene amount of coffee. A design system that ensures consistent design and development and evolves along with the products and the team.',
-    tags:['Product Design','Design Systems','Prototyping','Figma'],/* =====================================================
-       IMAGE GALLERY FOR DIGITAL PRODUCTS
-       Add your image URLs here. They will appear in the
-       expanded popup's gallery area with ◄ ► navigation.
-       Example: images:['img/veita-1.jpg', 'img/veita-2.jpg']
-       ===================================================== */
-    images:[],
+    tags:['Product Design','Design Systems','Prototyping','Figma'],/* IMAGE GALLERY FOR DIGITAL PRODUCTS — Add full image URLs here */
+    images:[
+      /* 'https://your-site.com/images/digital-products-1.png', */
+      /* 'https://your-site.com/images/digital-products-2.png'  */
+    ],
     xp:100},
-  {x:3700,label:'ILLUSTRATIONS',type:'project',tab:'work',
+  {x:3750,label:'ILLUSTRATIONS',type:'project',tab:'work',
     title:'Illustrations',
     what:"Illustrations for all kinds of stuff: childrens' books, youth drug prevention campaigns, personal sale, for fun!",
     how:'Adobe Photoshop, Adobe Illustrator, Procreate.',
-    tags:['Photoshop','Illustrator','Procreate','Illustration'],/* =====================================================
-       IMAGE GALLERY FOR ILLUSTRATIONS
-       Add your image URLs here. They will appear in the
-       expanded popup's gallery area with ◄ ► navigation.
-       Example: images:['img/veita-1.jpg', 'img/veita-2.jpg']
-       ===================================================== */
-    images:[],
+    tags:['Photoshop','Illustrator','Procreate','Illustration'],/* IMAGE GALLERY FOR ILLUSTRATIONS — Add full image URLs here */
+    images:[
+      /* 'https://your-site.com/images/illustrations-1.png', */
+      /* 'https://your-site.com/images/illustrations-2.png'  */
+    ],
     xp:100},
-  {x:4250,label:'OTHER WORKS',type:'project',tab:'work',
+  {x:4300,label:'OTHER WORKS',type:'project',tab:'work',
     title:'Other Works',
     what:"A 2D sidescroller where you jump on sexists' heads instead of Goombas'. A phone app that makes sure that your phone is restless and miserable in any and all positions. A first-person video game where you play either as an arthritic old person or fit young person.",
     how:'Unity, Pure Data, Blender, Photoshop, and pure stubbornness.',
-    tags:['Unity','Game Design','Blender','Pure Data'],/* =====================================================
-       IMAGE GALLERY FOR OTHER WORKS
-       Add your image URLs here. They will appear in the
-       expanded popup's gallery area with ◄ ► navigation.
-       Example: images:['img/veita-1.jpg', 'img/veita-2.jpg']
-       ===================================================== */
-    images:[],
+    tags:['Unity','Game Design','Blender','Pure Data'],/* IMAGE GALLERY FOR OTHER WORKS — Add full image URLs here */
+    images:[
+      /* 'https://your-site.com/images/other-works-1.png', */
+      /* 'https://your-site.com/images/other-works-2.png'  */
+    ],
     xp:100},
-  {x:4450,label:'ODD JOBS',type:'project',tab:'work',
+  {x:4850,label:'ODD JOBS',type:'project',tab:'work',
     title:'Odd Jobs',
     what:'Here and there I get to break up the workday with smaller projects.',
     how:'Usually these smaller projects require working in graphics software such as Adobe Photoshop, Illustrator, Procreate, and Figma. Some larger projects involve Adobe After Effects. Luckily, not too many of them involve Powerpoint.',
@@ -725,7 +730,7 @@ const ZONES=[
        ===================================================== */
     images:[],
     xp:100},
-  {x:4750,label:'CONTACT',type:'dialog',tab:'contact',
+  {x:5400,label:'CONTACT',type:'dialog',tab:'contact',
     header:'CONTACT — Get in Touch',
     content:`Ásbjörn Erlingsson<br>Digital Product Designer<br>The City of Reykjavík<br><br><span>✉ asbjornerlingsson@gmail.com</span><br><span>☎ 6616443</span><br><br>Thanks for exploring. Quest complete.`,
     xp:50}
@@ -795,7 +800,7 @@ function toggleMode(){
 // ============================
 // GAME STATE
 // ============================
-const WORLD_WIDTH=5900,GROUND_Y_RATIO=0.74,WALK_SPEED=3.5;
+const WORLD_WIDTH=6900,GROUND_Y_RATIO=0.74,WALK_SPEED=3.5;
 let modeHintShown=false,modeHintTimer=0;
 let gameStarted=false,canvas,ctx,playerCanvas,playerCtx,cameraX=0;
 let player={x:200,y:0,vx:0,vy:0,facing:1,walking:false,animFrame:0,animTimer:0,onGround:true,jumpY:0,sitting:false,sittingTimer:0};
@@ -1006,7 +1011,10 @@ function setupTouch(){
 }
 
 function onKeyDown(e){
-  keys[e.key]=true;
+  var k=e.key;
+  keys[k]=true;
+  // Also set lowercase version so Shift+d ('D') matches 'd' check
+  if(k.length===1)keys[k.toLowerCase()]=true;
   if(!gameStarted){startGame();return}
   if(e.key==='e'||e.key==='E'||e.key==='ArrowUp'){
     if(popupOpen){closePopup();return}
@@ -1016,7 +1024,7 @@ function onKeyDown(e){
   if(e.key==='Escape'){closePopup();hideDialog()}
   if(e.key===' '&&player.onGround){player.vy=-10;player.onGround=false}
 }
-function onKeyUp(e){keys[e.key]=false}
+function onKeyUp(e){var k=e.key;keys[k]=false;if(k.length===1){keys[k.toLowerCase()]=false;keys[k.toUpperCase()]=false}}
 function onMouseDown(e){
   if(!gameStarted){startGame();return}
   if(currentMode==='browse')return;
@@ -1134,7 +1142,7 @@ function update(){
     player.walking=false;
     // Speech bubble is baked into the sitting scene image
     // Press any movement key to stand up
-    if(keys['a']||keys['A']||keys['ArrowLeft']||keys['d']||keys['D']||keys['ArrowRight']||touchLeft||touchRight){
+    if(keys['a']||keys['A']||keys['arrowleft']||keys['ArrowLeft']||keys['d']||keys['D']||keys['arrowright']||keys['ArrowRight']||touchLeft||touchRight){
       player.sitting=false;
       showSpeechBubble=false;
     }
@@ -1142,10 +1150,12 @@ function update(){
   }
 
   let moving=false;
-  const spd=(keys['Shift'])?WALK_SPEED*1.5:WALK_SPEED;
-  if(keys['a']||keys['A']||keys['ArrowLeft']||touchLeft){player.vx=-spd;player.facing=-1;moving=true}
-  else if(keys['d']||keys['D']||keys['ArrowRight']||touchRight){player.vx=spd;player.facing=1;moving=true}
-  else{player.vx*=0.7;if(Math.abs(player.vx)<0.3)player.vx=0}
+  const goLeft=keys['a']||keys['A']||keys['ArrowLeft']||keys['arrowleft']||touchLeft;
+  const goRight=keys['d']||keys['D']||keys['ArrowRight']||keys['arrowright']||touchRight;
+  const spd=keys['Shift']?WALK_SPEED*1.5:WALK_SPEED;
+  if(goLeft){player.vx=-spd;player.facing=-1;moving=true}
+  else if(goRight){player.vx=spd;player.facing=1;moving=true}
+  else{player.vx=0}
 
   player.walking=moving;
   player.x+=player.vx;
@@ -1165,7 +1175,7 @@ function update(){
   // Walk animation timing
   if(player.walking){
     player.animTimer+=0.016;
-    const animSpd=keys['Shift']?0.07:0.12;
+    var animSpd=keys['Shift']?0.07:0.12;
     if(player.animTimer>animSpd){player.animTimer=0;player.animFrame=(player.animFrame+1)%4}
   }else{player.animFrame=0;player.animTimer=0}
 
