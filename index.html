@@ -354,6 +354,40 @@ canvas{position:absolute;top:0;left:0;width:100%;height:100%}
   border-right:7px solid transparent;
   border-bottom:7px solid #fbfbfb;
 }
+
+#lightbox{position:fixed;inset:0;z-index:800;background:rgba(0,0,0,0.9);display:none;align-items:center;justify-content:center;cursor:pointer}
+#lightbox.visible{display:flex}
+#lightbox-img{max-width:90vw;max-height:85vh;object-fit:contain;cursor:default}
+#lightbox-close{position:absolute;top:20px;right:24px;width:38px;height:38px;display:flex;align-items:center;justify-content:center;cursor:pointer;background:transparent;border:none}
+#lightbox-close svg line{stroke:white;stroke-width:2.5}
+#lightbox-close:hover{background:rgba(255,255,255,0.15)}
+.lb-arrow{position:absolute;top:50%;transform:translateY(-50%);width:50px;height:80px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:32px;color:rgba(255,255,255,0.6);background:transparent;border:none}
+.lb-arrow:hover{color:white}
+#lb-left{left:16px}
+#lb-right{right:16px}
+#lb-counter{position:absolute;bottom:20px;left:50%;transform:translateX(-50%);font-family:'Share Tech Mono',monospace;font-size:14px;color:rgba(255,255,255,0.5)}
+#browse-modal-backdrop{position:fixed;inset:0;z-index:600;background:rgba(0,0,0,0.5);display:none;align-items:center;justify-content:center}
+#browse-modal-backdrop.visible{display:flex}
+#browse-modal{background:#fbfbfb;border:4px solid #050E08;width:min(1100px,94vw);max-height:85vh;overflow-y:auto;padding:48px;position:relative}
+.bm-close{position:absolute;top:20px;right:20px;width:38px;height:38px;display:flex;align-items:center;justify-content:center;cursor:pointer;background:transparent;border:none;transition:all 0.15s}
+.bm-close svg line{stroke:#050E08;stroke-width:2.5}
+.bm-close:hover{background:#050E08}
+.bm-close:hover svg line{stroke:#fbfbfb}
+.bm-title{font-family:'Share Tech Mono',monospace;font-size:32px;color:#050E08;margin-bottom:32px;text-transform:uppercase}
+.bm-body{display:flex;gap:48px}
+.bm-text{flex:1;min-width:0}
+.bm-label{font-family:'Share Tech Mono',monospace;font-size:16px;color:#050E08;margin-bottom:8px}
+.bm-label+.bm-label{margin-top:24px}
+.bm-desc{font-family:'Share Tech Mono',monospace;font-size:18px;line-height:1.5;color:#050E08;margin-bottom:24px}
+.bm-gallery{flex:0 0 380px;display:flex;flex-direction:column;gap:12px}
+.bm-main-img{width:100%;min-height:280px;border:4px solid #050E08;display:flex;align-items:center;justify-content:center;overflow:hidden;background:#f0f0f0;cursor:pointer}
+.bm-main-img img{width:100%;height:100%;object-fit:contain}
+.bm-thumbs{display:flex;gap:8px;overflow-x:auto}
+.bm-thumb{flex:0 0 60px;height:60px;border:2px solid #ccc;cursor:pointer;overflow:hidden;transition:border-color 0.15s}
+.bm-thumb.active{border-color:#050E08;border-width:3px}
+.bm-thumb img{width:100%;height:100%;object-fit:cover}
+@media(max-width:768px){.bm-body{flex-direction:column}.bm-gallery{flex:none;width:100%}}
+
 </style>
 </head>
 <body>
@@ -466,6 +500,24 @@ canvas{position:absolute;top:0;left:0;width:100%;height:100%}
 
 <!-- ======== BROWSE MODE ======== -->
 <div id="browse-mode">
+  <div id="browse-modal-backdrop" onclick="closeBM(event)">
+    <div id="browse-modal">
+      <button class="bm-close" onclick="closeBM()"><svg viewBox="0 0 20 20"><line x1="2" y1="2" x2="18" y2="18"/><line x1="18" y1="2" x2="2" y2="18"/></svg></button>
+      <div class="bm-title" id="bm-title"></div>
+      <div class="bm-body">
+        <div class="bm-text">
+          <div class="bm-label">WHAT?</div>
+          <div class="bm-desc" id="bm-what"></div>
+          <div class="bm-label">HOW?</div>
+          <div class="bm-desc" id="bm-how"></div>
+        </div>
+        <div class="bm-gallery">
+          <div class="bm-main-img" id="bm-main-img"></div>
+          <div class="bm-thumbs" id="bm-thumbs"></div>
+        </div>
+      </div>
+    </div>
+  </div>
   <div id="browse-crt"></div>
   <div class="browse-inner" style="max-width:1100px;margin:0 auto;padding:80px 40px 100px;font-family:Helvetica,Arial,sans-serif">
     
@@ -497,6 +549,13 @@ canvas{position:absolute;top:0;left:0;width:100%;height:100%}
     </div>
   </div></div>
 
+<div id="lightbox" onclick="closeLB(event)">
+  <button id="lightbox-close" onclick="closeLB()"><svg viewBox="0 0 20 20"><line x1="2" y1="2" x2="18" y2="18"/><line x1="18" y1="2" x2="2" y2="18"/></svg></button>
+  <button class="lb-arrow" id="lb-left" onclick="lbPrev(event)">&#9664;</button>
+  <img id="lightbox-img" src="" alt="">
+  <button class="lb-arrow" id="lb-right" onclick="lbNext(event)">&#9654;</button>
+  <div id="lb-counter"></div>
+</div>
 <!-- INTRO -->
 <div id="intro-overlay">
   <img id="title-img" src="" alt="Ásbjörn - Digital Product Designer" style="max-width:min(600px,85vw);height:auto;filter:drop-shadow(0 0 8px #FF2889) drop-shadow(0 0 15px rgba(255,40,137,0.08))">
@@ -679,8 +738,8 @@ const ZONES=[
     how:'These were the first illustrations using their new design system. A visual style needed to be developed that fit their design system language.',
     tags:['Illustration','Branding','Figma','Design System'],/* IMAGE GALLERY FOR MENIGA — Add full image URLs here */
     images:[
-      'img/meniga1.png',
-      'img/meniga2.png'
+      /* 'https://your-site.com/images/meniga-1.png', */
+      /* 'https://your-site.com/images/meniga-2.png'  */
     ],
     xp:100},
   {x:2650,label:'BILINGUALISM',type:'project',tab:'work',
@@ -1026,7 +1085,8 @@ function onKeyDown(e){
     if(dialogOpen){hideDialog();return}
     interact();
   }
-  if(e.key==='Escape'){closePopup();hideDialog()}
+  if(e.key==='Escape'){if(lbOpen){closeLB();return}closePopup();hideDialog()}
+  if(lbOpen){if(e.key==='ArrowLeft')lbPrev();if(e.key==='ArrowRight')lbNext();return}
   if(e.key===' '&&player.onGround){player.vy=-10;player.onGround=false}
 }
 function onKeyUp(e){var k=e.key;keys[k]=false;if(k.length===1){keys[k.toLowerCase()]=false;keys[k.toUpperCase()]=false}}
@@ -1079,6 +1139,50 @@ function showProject(z){activeModalZone=z;activeProjectImages=z.images||[];const
   p.classList.remove('expanded');
   p.classList.add('visible');popupOpen=true;positionModal(p,z)}
 let currentImageIdx=0;
+
+var lbOpen=false,lbImgs=[],lbIdx=0;
+function openLB(imgs,idx){lbImgs=imgs;lbIdx=idx||0;updLB();document.getElementById('lightbox').classList.add('visible');lbOpen=true}
+function closeLB(e){if(e&&e.target&&e.target.id!=='lightbox'&&!e.target.closest('#lightbox-close'))return;document.getElementById('lightbox').classList.remove('visible');lbOpen=false}
+function lbPrev(e){if(e)e.stopPropagation();if(lbIdx>0){lbIdx--;updLB()}}
+function lbNext(e){if(e)e.stopPropagation();if(lbIdx<lbImgs.length-1){lbIdx++;updLB()}}
+function updLB(){document.getElementById('lightbox-img').src=lbImgs[lbIdx];document.getElementById('lb-counter').textContent=(lbIdx+1)+' / '+lbImgs.length}
+
+var bmZone=null,bmIdx=0;
+function openBM(z){
+  bmZone=z;bmIdx=0;
+  document.getElementById('bm-title').textContent=z.title;
+  document.getElementById('bm-what').textContent=z.what;
+  document.getElementById('bm-how').textContent=z.how;
+  var imgs=z.images||[];
+  var main=document.getElementById('bm-main-img');
+  var thumbs=document.getElementById('bm-thumbs');
+  if(imgs.length>0){
+    main.innerHTML='<img src="'+imgs[0]+'" onclick="openLB(bmZone.images,bmIdx)">';
+    thumbs.innerHTML='';
+    for(var i=0;i<imgs.length;i++){
+      var t=document.createElement('div');
+      t.className='bm-thumb'+(i===0?' active':'');
+      t.innerHTML='<img src="'+imgs[i]+'">';
+      t.setAttribute('data-i',i);
+      t.onclick=function(){bmIdx=parseInt(this.getAttribute('data-i'));updBM()};
+      thumbs.appendChild(t);
+    }
+  }else{
+    main.innerHTML='<div style="font-family:Share Tech Mono,monospace;font-size:13px;color:#aaa;padding:20px">Images coming soon</div>';
+    thumbs.innerHTML='';
+  }
+  document.getElementById('browse-modal-backdrop').classList.add('visible');
+}
+function updBM(){
+  var imgs=bmZone.images||[];if(!imgs.length)return;
+  document.getElementById('bm-main-img').innerHTML='<img src="'+imgs[bmIdx]+'" onclick="openLB(bmZone.images,bmIdx)">';
+  document.querySelectorAll('.bm-thumb').forEach(function(t,i){t.className='bm-thumb'+(i===bmIdx?' active':'')});
+}
+function closeBM(e){
+  if(e&&e.target&&e.target.id!=='browse-modal-backdrop'&&!e.target.closest('.bm-close'))return;
+  document.getElementById('browse-modal-backdrop').classList.remove('visible');
+}
+
 let activeProjectImages=[];
 function prevImage(){if(currentImageIdx>0){currentImageIdx--;updateImageDisplay()}}
 function nextImage(){if(currentImageIdx<activeProjectImages.length-1){currentImageIdx++;updateImageDisplay()}}
@@ -1093,9 +1197,9 @@ function updateImageDisplay(){
   // Clamp index
   if(currentImageIdx>=activeProjectImages.length)currentImageIdx=activeProjectImages.length-1;
   if(currentImageIdx<0)currentImageIdx=0;
-  // Show current image
+  // Show current image (click to open lightbox)
   var imgUrl=activeProjectImages[currentImageIdx];
-  area.innerHTML='<img src="'+imgUrl+'" style="width:100%;height:100%;object-fit:contain;display:block" alt="Project image '+(currentImageIdx+1)+'">';
+  area.innerHTML='<img src="'+imgUrl+'" style="width:100%;height:100%;object-fit:contain;display:block;cursor:pointer" onclick="openLB(activeProjectImages,'+currentImageIdx+')" alt="Project image '+(currentImageIdx+1)+'">';
 }
 
 function expandModal(){
