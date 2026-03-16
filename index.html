@@ -1208,6 +1208,23 @@ function lbNext(e){if(e)e.stopPropagation();if(lbIdx<lbImgs.length-1){lbIdx++;up
 function updLB(){document.getElementById('lightbox-img').src=lbImgs[lbIdx];document.getElementById('lb-counter').textContent=(lbIdx+1)+' / '+lbImgs.length}
 
 var bmZone=null,bmIdx=0;
+
+function isVidUrl(u){return u.match(/\.(mp4|webm|mov|ogg)($|\?)/i)||(u.indexOf('youtube')>-1)||(u.indexOf('youtu.be')>-1)||(u.indexOf('vimeo')>-1)}
+
+function bmMedia(url,idx){
+  if(isVidUrl(url)){
+    if(url.indexOf('youtube')>-1||url.indexOf('youtu.be')>-1){
+      var eu=url;
+      if(url.indexOf('watch?v=')>-1)eu=url.replace('watch?v=','embed/');
+      if(url.indexOf('youtu.be/')>-1)eu='https://www.youtube.com/embed/'+url.split('youtu.be/')[1];
+      return '<iframe src="'+eu+'" style="width:100%;height:100%;min-height:280px;border:none" allowfullscreen></iframe>';
+    }
+    if(url.indexOf('vimeo')>-1){return '<iframe src="https://player.vimeo.com/video/'+url.split('vimeo.com/')[1]+'" style="width:100%;height:100%;min-height:280px;border:none" allowfullscreen></iframe>'}
+    return '<video src="'+url+'" style="width:100%;height:100%;object-fit:contain" controls></video>';
+  }
+  return '<img src="'+url+'" style="width:100%;height:100%;object-fit:contain;cursor:pointer" onclick="openLB(bmZone.images,'+idx+')">';
+}
+
 function openBM(z){
   bmZone=z;bmIdx=0;
   document.getElementById('bm-title').textContent=z.title;
@@ -1217,12 +1234,14 @@ function openBM(z){
   var main=document.getElementById('bm-main-img');
   var thumbs=document.getElementById('bm-thumbs');
   if(imgs.length>0){
-    main.innerHTML='<img src="'+imgs[0]+'" onclick="openLB(bmZone.images,bmIdx)">';
+    /* THIS IS THE FIX — bmMedia handles both images and videos */
+    main.innerHTML=bmMedia(imgs[0],0);
     thumbs.innerHTML='';
     for(var i=0;i<imgs.length;i++){
       var t=document.createElement('div');
       t.className='bm-thumb'+(i===0?' active':'');
-      t.innerHTML='<img src="'+imgs[i]+'">';
+      /* THIS IS THE FIX — Video thumbnails show ▶ icon */
+      t.innerHTML=isVidUrl(imgs[i])?'<div style="width:100%;height:100%;background:#222;display:flex;align-items:center;justify-content:center;color:white;font-size:20px">▶</div>':'<img src="'+imgs[i]+'">';
       t.setAttribute('data-i',i);
       t.onclick=function(){bmIdx=parseInt(this.getAttribute('data-i'));updBM()};
       thumbs.appendChild(t);
@@ -1235,7 +1254,8 @@ function openBM(z){
 }
 function updBM(){
   var imgs=bmZone.images||[];if(!imgs.length)return;
-  document.getElementById('bm-main-img').innerHTML='<img src="'+imgs[bmIdx]+'" onclick="openLB(bmZone.images,bmIdx)">';
+  /* THIS IS THE FIX — updBM also uses bmMedia for video support */
+  document.getElementById('bm-main-img').innerHTML=bmMedia(imgs[bmIdx],bmIdx);
   document.querySelectorAll('.bm-thumb').forEach(function(t,i){t.className='bm-thumb'+(i===bmIdx?' active':'')});
 }
 function closeBM(e){
